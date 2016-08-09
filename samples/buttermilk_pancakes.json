@@ -1,0 +1,91 @@
+{
+    "category": {
+        "name": "breakfast",
+        "subcategory": {
+            "attributes": "buttermilk",
+            "name": "pancakes"
+        }
+    },
+    "id": 0,
+    "ingredients": [
+        {
+            "name": "flour"
+        },
+        {
+            "name": "salt"
+        },
+        {
+            "name": "baking soda"
+        },
+        {
+            "name": "baking powder"
+        },
+        {
+            "name": "egg"
+        },
+        {
+            "name": "buttermilk"
+        },
+        {
+            "name": "butter"
+        }
+    ],
+    "instructions": [
+        {
+            "speech": [
+                "mix",
+                {
+                    "name": "flour",
+                    "quantity": 0.5,
+                    "units": "cups"
+                },
+                "with",
+                {
+                    "name": "salt",
+                    "quantity": 0.25,
+                    "units": "teaspoon"
+                },
+                ",",
+                {
+                    "name": "baking soda",
+                    "quantity": 0.25,
+                    "units": "teaspoon"
+                },
+                ", and",
+                {
+                    "name": "baking powder",
+                    "quantity": 0.5,
+                    "units": "teaspoon"
+                }
+            ]
+        },
+        {
+            "speech": [
+                "beat in an",
+                {
+                    "name": "egg",
+                    "quantity": 1,
+                    "units": ""
+                },
+                "and",
+                {
+                    "name": "buttermilk",
+                    "quantity": 0.5,
+                    "units": "cups"
+                }
+            ]
+        },
+        {
+            "speech": [
+                "melt the",
+                {
+                    "name": "butter",
+                    "quantity": 1,
+                    "units": "tablespoon"
+                },
+                "and beat into the batter"
+            ]
+        }
+    ],
+    "name": "classic buttermilk pancakes"
+}
