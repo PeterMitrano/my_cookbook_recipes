@@ -1,0 +1,19 @@
+language: python
+python:
+  - "3.4"
+
+# command to install dependencies
+install: "pip install -r requirements.txt"
+
+before_script:
+  - mkdir db;
+  - wget http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz -O dynamodb_local_latest.tar.gz;
+  - tar -xf dynamodb_local_latest.tar.gz -C db
+  - cd db
+  - java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb &
+  - sleep 1
+  - cd ..
+
+# command to run tests
+script:
+  - nosetests --verbose -a \!wip
