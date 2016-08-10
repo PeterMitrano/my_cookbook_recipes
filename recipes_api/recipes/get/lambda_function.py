@@ -5,25 +5,28 @@ import logging
 logging.getLogger('boto3').setLevel(logging.WARNING)
 logging.getLogger('botocore').setLevel(logging.WARNING)
 
-def handle_event(event, context):
 
+def handle_event(event, context):
 
     # parse the recipe id from the parameters
     try:
-        recipe_id =  event['params']['querystring']['id']
+        recipe_id = event['params']['querystring']['id']
 
         try:
             id_num = int(recipe_id)
 
             if id_num < 0:
-                return {"code": -1, "data": "recipe_id (%d) most be positive." % id_num}
+                return {"code": -1,
+                        "data": "recipe_id (%d) most be positive." % id_num}
 
             # lookup that id in our database
             if "debug" in context:
-                resource = boto3.resource("dynamodb",
-                        endpoint_url="http://localhost:8000",
-                        aws_access_key_id="fake",
-                        aws_secret_access_key="fake")
+                resource = boto3.resource(
+                    "dynamodb",
+                    endpoint_url="http://localhost:8000",
+                    aws_access_key_id="fake",
+                    aws_secret_access_key="fake",
+                    region_name="us-east-1")
             else:
                 resource = boto3.resource("dynamodb")
 

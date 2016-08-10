@@ -8,15 +8,10 @@ logging.getLogger('nose').setLevel(logging.WARNING)
 
 CONTEXT = {"debug": True}
 
+
 class ValidationTest(unittest.TestCase):
     def make_event(self, recipe_id):
-        return {
-            "params": {
-                "querystring": {
-                    "id": str(recipe_id)
-                }
-            }
-        }
+        return {"params": {"querystring": {"id": str(recipe_id)}}}
 
     def test_valid_int(self):
         for i in range(0, 100, 5):
@@ -40,4 +35,3 @@ class ValidationTest(unittest.TestCase):
             response = lambda_function.handle_event(event, CONTEXT)
             self.assertLess(response['code'], 0)
             self.assertEqual(type(response['data']), str)
-
