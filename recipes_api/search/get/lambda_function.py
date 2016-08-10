@@ -13,13 +13,14 @@ def handle_event(event, context):
         recipe_id = event['params']['querystring']['keywords']
 
         # connect to database
-        if "debug" in context:
-            resource = boto3.resource(
-                "dynamodb",
-                endpoint_url="http://localhost:8000",
-                aws_access_key_id="fake",
-                aws_secret_access_key="fake",
-                region_name="us-east-1")
+        if isinstance(context, dict):
+            if "debug" in context:
+                resource = boto3.resource(
+                    "dynamodb",
+                    endpoint_url="http://localhost:8000",
+                    aws_access_key_id="fake",
+                    aws_secret_access_key="fake",
+                    region_name="us-east-1")
         else:
             resource = boto3.resource("dynamodb")
 
