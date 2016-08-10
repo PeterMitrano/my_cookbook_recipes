@@ -11,8 +11,8 @@ before_script:
   - tar -xf dynamodb_local_latest.tar.gz -C db
   - cd db
   - java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb &
-  - sleep 1
-  - cd ..
+  - cd ../recipes_api/tests
+  - python initialize_recipes_table.py
 
 # command to run tests
 script:
