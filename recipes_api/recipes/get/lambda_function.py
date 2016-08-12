@@ -1,6 +1,7 @@
 import boto3
 import json
 import logging
+import os
 
 logging.getLogger('boto3').setLevel(logging.WARNING)
 logging.getLogger('botocore').setLevel(logging.WARNING)
@@ -19,15 +20,13 @@ def handle_event(event, context):
                 return {"code": -1,
                         "data": "recipe_id (%d) most be positive." % id_num}
 
-            # lookup that id in our database
-            if isinstance(context, dict):
-                if "debug" in context:
-                    resource = boto3.resource(
-                        "dynamodb",
-                        endpoint_url="http://localhost:8000",
-                        aws_access_key_id="fake",
-                        aws_secret_access_key="fake",
-                        region_name="us-east-1")
+            if 'DEBUG' in os.environ:
+                resource = boto3.resource(
+                    "dynamodb",
+                    endpoint_url="http://localhost:8000",
+                    aws_access_key_id="fake",
+                    aws_secret_access_key="fake",
+                    region_name="us-east-1")
             else:
                 resource = boto3.resource("dynamodb")
 
