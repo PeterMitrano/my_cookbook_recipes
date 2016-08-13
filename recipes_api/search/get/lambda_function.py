@@ -50,7 +50,7 @@ def handle_event(event, context):
         table = resource.Table('my_cookbook_recipes')
         response = table.scan()
 
-        http_code = response['ResponseMetaData']['HTTPStatusCode']
+        http_code = response['ResponseMetadata']['HTTPStatusCode']
         if http_code != 200:
             return {"code": -1, "data": "failed to scan recipes table"}
 

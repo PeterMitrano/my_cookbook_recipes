@@ -16,7 +16,8 @@ class ValidationTest(unittest.TestCase):
         return {"params": {"querystring": {"keywords": str(recipe_id)}}}
 
     def test_str(self):
-        event = self.make_event('evil_input_string')
+        event = self.make_event('pancakes')
+        from nose.tools import set_trace; set_trace()
         response = get_search.handle_event(event, None)
         self.assertGreaterEqual(response['code'], 0)
 
