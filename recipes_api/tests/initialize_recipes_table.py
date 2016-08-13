@@ -13,8 +13,9 @@ def main():
     samples = []
     samples_dir = '../../samples'
     if os.path.exists(samples_dir):
-        sample_filenames = glob.glob(samples_dir + '*.json')
+        sample_filenames = glob.glob(samples_dir + '/*.json')
         for filename in sample_filenames:
+            print filename
             with open(filename, 'r') as f:
                 sample = json.load(f)
                 samples.append(sample)
@@ -31,6 +32,7 @@ def main():
 
     tables = [table.name for table in dynamodb.tables.all()]
     if table_name not in tables:
+        print 'creating table'
         table = dynamodb.create_table(
             TableName=table_name,
             KeySchema=[

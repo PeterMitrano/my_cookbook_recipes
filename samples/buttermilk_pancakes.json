@@ -2,11 +2,11 @@
     "category": {
         "name": "breakfast",
         "subcategory": {
-            "attributes": "buttermilk",
+            "attributes": ["buttermilk"],
             "name": "pancakes"
         }
     },
-    "cook_time": "10 minutes",
+    "cook_time": {"quantity": 10, "units": "minutes"},
     "ingredients": [
         {
             "name": "flour"

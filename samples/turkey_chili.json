@@ -1,0 +1,50 @@
+{
+    "category": {
+        "name": "chili",
+        "subcategory": {
+            "name": "turkey"
+        }
+    },
+    "cook_time": {
+        "quantity": 35,
+        "units": "minutes"
+    },
+    "ingredients": [
+        {
+            "name": "extra-virgin olive oil"
+        },
+        {
+            "name": "chili powder"
+        },
+        {
+            "name": "dried oregano"
+        },
+        {
+            "name": "kosher salt"
+        },
+        {
+            "name": "chopped garlic"
+        },
+        {
+            "name": "chopped yellow onion"
+        },
+        {
+            "name": "tomato paste"
+        },
+        {
+            "name": "chipotle chile adobo"
+        },
+        {
+            "name": "ground turkey"
+        },
+        {
+            "name": "mexican lager-style beer"
+        },
+        {
+            "name": "kidney beans"
+        },
+        {
+            "name": "whole peeled tomatoes"
+        }
+    ]
+}

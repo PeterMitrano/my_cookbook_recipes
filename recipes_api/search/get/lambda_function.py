@@ -1,4 +1,5 @@
 import boto3
+from fuzzywuzzy import fuzz
 import json
 import logging
 import os
@@ -27,8 +28,6 @@ def handle_event(event, context):
     try:
         recipe_keywords = event['params']['querystring']['keywords']
 
-        print type(recipe_keywords)
-
         # basic input validation
         if could_be_number(recipe_keywords):
             return {"code": -1, "data": "recipe name cannot be a number"}
@@ -47,8 +46,12 @@ def handle_event(event, context):
             resource = boto3.resource("dynamodb")
 
         table = resource.Table('my_cookbook_recipes')
+        response = table.scan()
 
-        return {"code": 0, "data": "no recipes for you!"}
+        # The simplest thing we can do right now is a fuzzy match
+        fuzz.partial_token_set_ratio(recipe_keywords, item)
+
+        return {"code": 0, "data": recipe_keywords}
 
     except KeyError:
         return {"code": -1, "data": "Failed to parse query prameter 'keywords'"}
