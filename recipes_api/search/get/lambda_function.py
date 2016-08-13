@@ -7,6 +7,8 @@ import os
 logging.getLogger('boto3').setLevel(logging.WARNING)
 logging.getLogger('botocore').setLevel(logging.WARNING)
 
+GOOD_ENOUGH_RATIO = 50
+
 def could_be_number(x):
     try:
         int(x)
@@ -48,10 +50,19 @@ def handle_event(event, context):
         table = resource.Table('my_cookbook_recipes')
         response = table.scan()
 
-        # The simplest thing we can do right now is a fuzzy match
-        fuzz.partial_token_set_ratio(recipe_keywords, item)
+        http_code = response['ResponseMetaData']['HTTPStatusCode']
+        if http_code != 200:
+            return {"code": -1, "data": "failed to scan recipes table"}
 
-        return {"code": 0, "data": recipe_keywords}
+        # The simplest thing we can do right now is a fuzzy match
+        matching_items = []
+        for item in response['Items']:
+            recipe_name = item['name']
+            ratio = fuzz.partial_token_set_ratio(recipe_keywords, recipe_name)
+            if ratio < GOOD_ENOUGH_RATIO:
+                matching_items.append(item)
+
+        return {"code": 0, "data": return matching_items}
 
     except KeyError:
         return {"code": -1, "data": "Failed to parse query prameter 'keywords'"}
