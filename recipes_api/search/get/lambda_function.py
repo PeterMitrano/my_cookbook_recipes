@@ -62,7 +62,7 @@ def handle_event(event, context):
             if ratio < GOOD_ENOUGH_RATIO:
                 matching_items.append(item)
 
-        return {"code": 0, "data": return matching_items}
+        return {"code": 0, "data": matching_items}
 
     except KeyError:
         return {"code": -1, "data": "Failed to parse query prameter 'keywords'"}
