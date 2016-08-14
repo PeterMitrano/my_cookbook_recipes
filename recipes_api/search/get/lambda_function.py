@@ -2,7 +2,8 @@ import boto3
 from fuzzywuzzy import fuzz
 import json
 import logging
-import os
+
+import stage
 
 logging.getLogger('boto3').setLevel(logging.WARNING)
 logging.getLogger('botocore').setLevel(logging.WARNING)
@@ -37,15 +38,15 @@ def handle_event(event, context):
             return {"code": -1, "data": "recipe name cannot be json/a dict"}
 
         # connect to database
-        if 'DEBUG' in os.environ:
+        if stage.PROD:
+            resource = boto3.resource("dynamodb")
+        else:
             resource = boto3.resource(
                 "dynamodb",
                 endpoint_url="http://localhost:8000",
                 aws_access_key_id="fake",
                 aws_secret_access_key="fake",
                 region_name="us-east-1")
-        else:
-            resource = boto3.resource("dynamodb")
 
         table = resource.Table('my_cookbook_recipes')
         response = table.scan()
