@@ -1,6 +1,7 @@
 import unittest
 import decimal
 
+
 def decimilify(obj):
     if isinstance(obj, float):
         return decimal.Decimal(obj)

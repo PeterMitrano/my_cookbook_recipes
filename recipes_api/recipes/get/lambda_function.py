@@ -2,7 +2,7 @@ import boto3
 import json
 import logging
 
-import stage
+from recipes_api.common import stage
 
 logging.getLogger('boto3').setLevel(logging.WARNING)
 logging.getLogger('botocore').setLevel(logging.WARNING)

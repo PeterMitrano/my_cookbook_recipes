@@ -5,7 +5,6 @@ import unittest
 
 from recipes_api.recipes.get import lambda_function as get_recipe
 
-
 logging.getLogger('nose').setLevel(logging.WARNING)
 
 

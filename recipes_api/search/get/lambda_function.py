@@ -3,12 +3,13 @@ from fuzzywuzzy import fuzz
 import json
 import logging
 
-import stage
+from recipes_api.common import stage
 
 logging.getLogger('boto3').setLevel(logging.WARNING)
 logging.getLogger('botocore').setLevel(logging.WARNING)
 
 GOOD_ENOUGH_RATIO = 50
+
 
 def could_be_number(x):
     try:
@@ -18,12 +19,14 @@ def could_be_number(x):
     except ValueError:
         return False
 
+
 def could_be_dict(x):
     try:
         json.loads(x)
         return True
     except ValueError:
         return False
+
 
 def handle_event(event, context):
 
@@ -66,4 +69,5 @@ def handle_event(event, context):
         return {"code": 0, "data": matching_items}
 
     except KeyError:
-        return {"code": -1, "data": "Failed to parse query prameter 'keywords'"}
+        return {"code": -1,
+                "data": "Failed to parse query prameter 'keywords'"}

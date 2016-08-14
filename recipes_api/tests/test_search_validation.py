@@ -7,7 +7,6 @@ import unittest
 from recipes_api.search.get import lambda_function as get_search
 from recipes_api.tests import test_util
 
-
 logging.getLogger('nose').setLevel(logging.WARNING)
 
 
